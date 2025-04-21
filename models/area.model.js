@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const areaSchema = new mongoose.Schema(
   {
-    areaId: {
+    posterId: {
       type: String,
       required: true
     },
@@ -16,6 +16,11 @@ const areaSchema = new mongoose.Schema(
       required: true,
       maxlength: 1024
     },
+    categorie: {
+      type: String,
+      required: true,
+      maxlength: 50
+    },
     picture: {
       type: [String],
       required: true
@@ -23,8 +28,14 @@ const areaSchema = new mongoose.Schema(
     video: {
       type: String
     },
-    rate: {
+    prix: {
       type: String,
+      required: true,
+      maxlength: 10
+    },
+    likers: {
+      type: [String],
+      required: true,
     },
     comments: {
       type: [
