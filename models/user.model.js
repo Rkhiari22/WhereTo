@@ -6,34 +6,35 @@ const userSchema = new mongoose.Schema(
     {
         pseudo: {
             type: String,
-            required: true,
-            minLength: 3,
-            maxLength: 55,
+            required: [true, 'Please enter a username'],
             unique: true,
-            trim: true
+            minlength: [3, 'Username must be at least 3 characters'],
+            maxlength: [20, 'Username cannot exceed 20 characters']
         },
         email: {
             type: String,
-            required: true,
-            validate: [isEmail],
-            lowercase: true,
+            required: [true, 'Please enter an email'],
             unique: true,
-            trim: true,
+            lowercase: true,
+            validate: [isEmail, 'Please enter a valid email']
         },
         password: {
             type: String,
-            required: true,
-            max: 1024,
-            minlength: 6
+            required: [true, 'Please enter a password'],
+            minlength: [6, 'Password must be at least 6 characters']
         },
-        picture: {
+        profileImage: {
             type: String,
             default: "./uploads/profil/random-user.png"
-          },
-          bio :{
+        },
+        bio: {
             type: String,
             max: 1024,
-          }
+        },
+        favorites: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Destination'
+        }]
     },
     {
         timestamps: true,
